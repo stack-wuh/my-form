@@ -20,7 +20,7 @@
 </template>
 
 <script>
- import MyImageGroup from '../../image/src/main'
+ import MyImageGroup from '../../image/src/main.vue'
  import Types from '../../form/src/utils'
  export default{
   name: 'WUpload',
