@@ -18,7 +18,7 @@
                       :key="cid + 'form-item'"
                       class="b-form-item"
                       :style="[cc.style]"
-                      :rules="Types.isFunc(cc.validtor) ? cc.validtor(form) : cc.validtor">
+                      :rules="Types.isFunc(cc.validator) ? cc.validator(form) : cc.validator">
                         <template v-if="['default', 'normal', undefined, null].includes(cc.type)">
                             <el-input
                               :disabled="itemDisabledBy(cc)" 

@@ -21,6 +21,6 @@ export default {
   install,
   WForm: Form,
   WUpload: Upload,
-  WImageGroup: ImageGroup,
+  WImage: ImageGroup,
   WImageItem: ImageItem
 }

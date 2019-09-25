@@ -1,7 +1,7 @@
 {
   "name": "w-json-form",
   "description": "ui component for Vue base on element-ui, json options to form",
-  "version": "0.0.1b",
+  "version": "0.0.1c",
   "author": "shadow <wuh131420@foxmail.com>",
   "license": "MIT",
   "private": false,

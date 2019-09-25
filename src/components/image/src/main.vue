@@ -30,11 +30,7 @@
   props: {
     list: {
       type: Array,
-      default: () => Array(10).fill({
-          _id: Math.random(),
-          mini: 'https://c.pxhere.com/photos/27/76/cat_ma_czy_tomcat_kitten_animal_charming-987621.jpg!d',
-          default: 'https://c.pxhere.com/photos/27/76/cat_ma_czy_tomcat_kitten_animal_charming-987621.jpg!d'
-        })
+      default: () => []
     },
     max: [String, Number],
     width: String,

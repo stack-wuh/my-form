@@ -29,7 +29,7 @@ export default {
           handle: (form) => {
             return true
           },
-          validtor: [
+          validator: [
             {
               required: true,
               message: '请编辑姓名',
@@ -43,7 +43,7 @@ export default {
             field: 'city',
             type: 'normal',
             handle: false,
-            validtor: () => [
+            validator: () => [
               {
                 required: true,
                 message: '请编辑城市',
@@ -55,7 +55,7 @@ export default {
             label: 'address',
             field: 'address',
             type: 'normal',
-            validtor: (form) => {
+            validator: (form) => {
               if(form.city) {
                 return [{required: true, message: '请编辑地址', trigger: ['blur']}]
               }
