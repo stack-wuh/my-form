@@ -1,12 +1,19 @@
 var path = require('path')
 var webpack = require('webpack')
+var NODE_ENV = process.env.NODE_ENV
 
 module.exports = {
-  entry: './src/main.js',
+  entry: NODE_ENV === 'development' ? './src/main.js' : './src/components/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: 'form.js',
+    library: 'form',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
+  },
+  externals: {
+    elementUI: 'element-ui'
   },
   module: {
     rules: [
@@ -96,7 +103,7 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
+      sourceMap: false,
       compress: {
         warnings: false
       }
