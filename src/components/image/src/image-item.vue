@@ -23,7 +23,7 @@
 
 <script>
  export default{
-  name: 'WIamgeItem',
+  name: 'WImageItem',
   components: {},
   props: {
     width: String,
