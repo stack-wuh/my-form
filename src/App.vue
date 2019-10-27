@@ -27,7 +27,7 @@ export default {
             placeholder: '请编辑姓名'
           },
           handle: (form) => {
-            return true
+            return false
           },
           validator: [
             {
