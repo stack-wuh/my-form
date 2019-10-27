@@ -18,7 +18,7 @@
                       :key="cid + 'form-item'"
                       class="b-form-item"
                       :style="[cc.style]"
-                      :rules="Types.isFunc(cc.validator) ? cc.validator(form) : cc.validator">
+                      :rules="Types.isFunc(cc.validator) ? cc.validator.call(that, form) : cc.validator">
                         <template v-if="['default', 'normal', undefined, null].includes(cc.type)">
                             <el-input
                               :disabled="itemDisabledBy(cc)" 
@@ -73,7 +73,7 @@
       </template>
 
       <el-form-item v-if="!$slots.button" class="b-form-item__outer">
-        <el-button @click="$emit('on-submit')" size="small" type="primary">submit</el-button>
+        <el-button @click="submit" size="small" type="primary">submit</el-button>
         <el-button @click="$emit('on-cancel')" size="small" type="danger">cancel</el-button>
         <el-button @click="$emit('on-keep')" size="small" type="info">keep</el-button>
       </el-form-item>
@@ -87,6 +87,7 @@
 <script>
  import Types from './utils'
  import MyUpload from '../../upload/src/main'
+ import { Message } from 'element-ui'
  export default{
   name: 'WForm',
   components: {
@@ -115,7 +116,8 @@
   computed: {},
   data(){
     return {
-      Types
+      Types,
+      that: this
     }
   },
   methods: {
@@ -126,9 +128,24 @@
       return item.handle ?
               (Types.isFunc(item.handle) ? item.handle(this.form) : item.handle)
                 : false
+    },
+    submit () {
+      this.$refs.myForm.validate(valid => {
+        if(valid){
+          Message({
+            type: 'success',
+            message: 'ok'
+          })
+          this.$emit('on-submit')
+        } else {
+          Message({
+            type: 'error',
+            message: 'no'
+          })
+        }
+      })
     }
   },
-  created(){},
   mixins: []
  }
 </script>

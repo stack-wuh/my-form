@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <MyForm v-model="search" :fieldList="fieldList"></MyForm>
+    <MyForm ref="MyForm" v-model="search" :fieldList="fieldList"></MyForm>
 
     <my-image-item :show-close="false"></my-image-item>
     <my-image-group :max="10" :list="images"></my-image-group>
@@ -31,7 +31,7 @@ export default {
           },
           validator: [
             {
-              required: true,
+              required: false,
               message: '请编辑姓名',
               trigger: ['blur']
             }
@@ -55,9 +55,26 @@ export default {
             label: 'address',
             field: 'address',
             type: 'normal',
+            handle: (form) => {
+              let { city } = form
+              if (!city) {
+                return true
+              }
+              return false
+            },
             validator: (form) => {
-              if(form.city) {
-                return [{required: true, message: '请编辑地址', trigger: ['blur']}]
+              let { city } = form
+              console.log(form)
+              console.log(this, 'this is validator this')
+              if (city) {
+                // this.$refs.MyForm.$forceUpdate()
+                return ([
+                  {
+                    required: true,
+                    message: '请编辑地址',
+                    trigger: ['blur', 'change']
+                  }
+                ])
               }
             }
           }
@@ -166,6 +183,9 @@ export default {
         }
       this.images.push(obj)
     }
+  },
+  created () {
+    console.log(this, 'this is app.vue this')
   }
 }
 </script>
