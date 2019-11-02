@@ -64,17 +64,14 @@ export default {
             },
             validator: (form) => {
               let { city } = form
-              console.log(form)
-              console.log(this, 'this is validator this')
               if (city) {
-                // this.$refs.MyForm.$forceUpdate()
-                return ([
+                return [
                   {
                     required: true,
                     message: '请编辑地址',
-                    trigger: ['blur', 'change']
+                    trigger: ['blur']
                   }
-                ])
+                ]
               }
             }
           }
